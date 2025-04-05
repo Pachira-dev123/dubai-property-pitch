@@ -1,4 +1,3 @@
-
 from fpdf import FPDF
 from PIL import Image
 
@@ -51,7 +50,7 @@ pdf.section_title("Conclusion")
 pdf.section_body(closing)
 
 # Add images
-image_paths = ["image1.png", "image2.png"]
+image_paths = ["Images/2000_67e0693e52025.webp", "Images/2000_67e2ffcbe0a5c.webp"]
 for path in image_paths:
     pdf.add_page()
     img = Image.open(path)
@@ -59,6 +58,7 @@ for path in image_paths:
     aspect = width / height
     page_width = 190
     img_height = page_width / aspect
-    pdf.image(path, x=10, y=30, w=page_width, h=img_height)
+    # Pass the PIL Image object directly (should work with fpdf2)
+    pdf.image(img, x=10, y=30, w=page_width, h=img_height)
 
 pdf.output("Pro_Styled_Dubai_Renovation_Case_Study_With_Two_Images.pdf")
